@@ -5,4 +5,5 @@ forthera_web.code-workspace
 db_func_v1.4.py
 maxr.py
 tree_app.py
+.dockerignore
 features/
