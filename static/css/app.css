@@ -1,0 +1,9 @@
+.dash {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: aliceblue;
+    max-height: 500px;
+    border-left: #ffffff;
+    border-left-width: 10px;
+    border-left-style: solid;
+}
