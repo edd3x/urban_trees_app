@@ -15,10 +15,12 @@ import pyproj
 from shapely.ops import transform
 import ipywidgets as widgets
 import reacton.ipyvuetify as v
+import os
 
-# geoserver_wms = "http://139.153.146.198:8080/geoserver/FORTHERA_GEO/wms"
-geoserver_wms = "https://era-geoserver.azurewebsites.net/geoserver/FORTHERA_GEO/wms"
-geoserver_ows = "https://era-geoserver.azurewebsites.net/geoserver/FORTHERA_GEO/ows"
+geoserver = os.environ.get('GEO_SERVER')
+
+geoserver_wms = f"{geoserver}/geoserver/FORTHERA_GEO/wms"
+geoserver_ows = f"{geoserver}/geoserver/FORTHERA_GEO/ows"
 
 zoom = solara.reactive(14.5)
 center = solara.reactive((56.122495, -3.807203))
@@ -243,7 +245,7 @@ def update_tree_dialog():
                                      solara.SliderFloat(label='Tree Height (Meters)', value=tree_height, min=1.5, max=20.0, disabled=disable_fields.value)], style_=f'font-size: 17px;'),
                 v.CardText(children=['Tree Age',
                                      solara.SliderInt(label='Tree Age (Years)', value=tree_age, min=1, max=300, disabled=disable_fields.value)], style_=f'font-size: 17px;'),
-                v.CardText(children=[solara.Warning('The seleted objected will be removed from the database on submit')], style_=f'font-size: 17px; display:{show_switch_msg.value}'),
+                v.CardText(children=[solara.Warning('The selected object will be removed from the database on submit')], style_=f'font-size: 17px; display:{show_switch_msg.value}'),
                                        
             ]),     
 
@@ -255,7 +257,7 @@ def update_tree_dialog():
         show_update_dialog.set(False)
 
     def dlog_submit(*args):
-        print(tuid, 'Flag',switch_msg.value, 'spp',tree_species.value,'Est Hght',tree_height.value, 'Age',tree_age.value)
+        print(tuid, 'Flag',switch_msg.value, 'spp',tree_species.value,'Est Height',tree_height.value, 'Age',tree_age.value)
         print('Loaded')
         show_update_dialog.set(False)
 
